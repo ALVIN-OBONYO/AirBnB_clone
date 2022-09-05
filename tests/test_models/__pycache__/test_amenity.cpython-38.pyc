@@ -1,0 +1,25 @@
+U  
+ }c��@sFdZddlZddlmZddlZGdd�dej�ZedkrBe��dS)z 
+ Unittest for amenity.py file 
+ �N)�Amenityc@s6eZdZdZe�Zdd�Zdd�Zdd�Zdd	�Z	d 
+ S)�TestAmenityz.Tests instances and methods from amenity classcCsd}|�tt|j��|�dS)ztests if class existsz <class 'models.amenity.Amenity'>N)�assertEqual�str�type�a)�self�res�r 
+ �//AirBnB_clone/tests/test_models/test_amenity.py�test_class_existsszTestAmenity.test_class_existscCs|�|jt�dS)z*test if Amenity is a subclass of BaseModelN)�assertIsInstancerr�rr 
+ r 
+ r�test_user_inheritancesz!TestAmenity.test_user_inheritancecCsL|�t|jd��|�t|jd��|�t|jd��|�t|jd��dS)zverify if attributes exist�name�id� 
+ created_at� 
+ updated_atN)� 
+ assertTrue�hasattrrrr 
+ r 
+ r�testHasAttributesszTestAmenity.testHasAttributescCsH|�|jjt�|�|jjt�|�|jjtj�|�|jjtj�dS)z5tests if the type of the attribute is the correct oneN)r rrrrr�datetimerrr 
+ r 
+ r� 
+ test_typesszTestAmenity.test_typesN) 
+ �_name_� 
+ _module�qualname�doc_rrrrrrr 
+ r 
+ r 
+ rr 
+ sr�_main_)	r�unittest�models.amenityrr�TestCaserr�mainr 
+ r 
+ r 
+ r�<module>s

@@ -1,0 +1,41 @@
+U  
+ }cY�@s�dZddlZddlZddlZddlmZddlmZddlmZGdd�dej	�Z 
+ Gdd        �d        ej        �ZGd 
+ d�dej        �Ze dkr�e��dS) z{ 
+ Defines unittests for models/city.py. 
+ Unittest classes: 
+     TestCity_instantiation 
+     TestCity_save 
+     TestCity_to_dict 
+ �N)�datetime)�sleep)�Cityc@s�eZdZdZdd�Zdd�Zdd�Zdd	�Zd 
+ d�Zdd �Z        dd�Z 
+ dd�Zdd�Zdd�Z dd�Zdd�Zdd�Zdd�ZdS)�TestCity_instantiationz6Unittests for testing instantiation of the City class.cCs|�ttt���dS�N)�assertEqualr�type��self�r�,/AirBnB_clone/tests/test_models/test_city.py�test_no_args_instantiatessz0TestCity_instantiation.test_no_args_instantiatescCs|�t�tj�����dSr)�assertInr�models�storage�all�valuesr	rrr�#test_new_instance_stored_in_objectssz:TestCity_instantiation.test_new_instance_stored_in_objectscCs|�ttt�j��dSr)r�strrr�idr	rrr�test_id_is_public_strsz,TestCity_instantiation.test_id_is_public_strcCs|�ttt�j��dSr)rrrr� 
+ created_atr	rrr�"test_created_at_is_public_datetimesz9TestCity_instantiation.test_created_at_is_public_datetimecCs|�ttt�j��dSr)rrrr� 
+ updated_atr	rrr�"test_updated_at_is_public_datetime sz9TestCity_instantiation.test_updated_at_is_public_datetimecCs:t�}|�tttj��|�dt|��|�d|j�dS)N�state_id)	rrrrrr�dir�assertNotIn�_dict_�r 
+ �cyrrr�'test_state_id_is_public_class_attribute#sz>TestCity_instantiation.test_state_id_is_public_class_attributecCs:t�}|�tttj��|�dt|��|�d|j�dS)N�name)	rrrrr"rrrrrrrr�#test_name_is_public_class_attribute)sz:TestCity_instantiation.test_name_is_public_class_attributecCs t�}t�}|�|j|j�dSr)r�assertNotEqualr�r 
+ Zcy1Zcy2rrr�test_two_cities_unique_ids/sz1TestCity_instantiation.test_two_cities_unique_idscCs(t�}td�t�}|�|j|j�dS�Ng�������?)rr� 
+ assertLessrr%rrr�$test_two_cities_different_created_at4sz;TestCity_instantiation.test_two_cities_different_created_atcCs(t�}td�t�}|�|j|j�dSr')rrr(rr%rrr�$test_two_cities_different_updated_at:sz;TestCity_instantiation.test_two_cities_different_updated_atcCslt��}t|�}t�}d|||||��}|�d|�|�d|�|�d||�|�d||�dS)N�123456z[City] (123456)z'id': '123456'z'created_at': z'updated_at': )	r�today�reprrrrr�str_r)r 
+ �dt�dt_reprr Zcystrrrr�test_str_representation@sz.TestCity_instantiation.test_str_representationcCstd�}|�d|j���dSr)rrrrrrrr�test_args_unusedLsz'TestCity_instantiation.test_args_unusedcCsLt��}|��}td||d�}|�|jd�|�|j|�|�|j|�dS)N�345�rrr)rr,�	isoformatrrrrr)r 
+ r/�dt_isor rrr�test_instantiation_with_kwargsPsz5TestCity_instantiation.test_instantiation_with_kwargsc	Cs(|�t��tdddd�W5QRXdS)Nr4)�assertRaises�	TypeErrorrr	rrr�#test_instantiation_with_None_kwargsXsz:TestCity_instantiation.test_instantiation_with_None_kwargsN)�_name_� 
+ _module�qualname�doc_r rrrrr!r#r&r)r*r1r2r7r:rrrrrsrc@sDeZdZdZedd��Zdd�Zdd�Zdd	�Zd 
+ d�Z        dd �Z 
+ dS)� TestCity_savez4Unittests for testing save method of the City class.cCs*zt�dd�Wntk 
+ r$YnXdS�N�	file.json�tmp)�os�rename�IOErrorr	rrr�setUp`szTestCity_save.setUpcCsNzt�d�Wntk 
+ r"YnXzt�dd�Wntk 
+ rHYnXdSr@)rC�removerErDr	rrr�tearDowngszTestCity_save.tearDowncCs.t�}td�|j}|��|�||j�dSr'�rrr�saver()r 
+ r �first_updated_atrrr� test_one_saveqs 
+ zTestCity_save.test_one_savecCsPt�}td�|j}|��|j}|�||�td�|��|�||j�dSr'rI)r 
+ r rK�second_updated_atrrr�test_two_savesxszTestCity_save.test_two_savesc	Cs*t�}|�t��|�d�W5QRXdSr)rr8r9rJrrrr�test_save_with_arg�sz TestCity_save.test_save_with_argc	CsBt�}|��d|j}tdd��}|�||���W5QRXdS)NzCity.rA�r)rrJr�openr�read)r 
+ r Zcyid�frrr�test_save_updates_file�s 
+  
+ z$TestCity_save.test_save_updates_fileN)r;r<r=r>�classmethodrFrHrLrNrOrTrrrrr?]s 
+  
+ r?c@sHeZdZdZdd�Zdd�Zdd�Zdd	�Zd 
+ d�Zdd �Z        dd�Z 
+ dS)�TestCity_to_dictz7Unittests for testing to_dict method of the City class.cCs|�ttt�����dSr)� 
+ assertTrue�dictrr�to_dictr	rrr�test_to_dict_type�sz"TestCity_to_dict.test_to_dict_typecCsJt�}|�d|���|�d|���|�d|���|�d|���dS)Nrrr�	_class_)rrrYrrrr�"test_to_dict_contains_correct_keys�s 
+ z3TestCity_to_dict.test_to_dict_contains_correct_keyscCs4t�}d|d||�d|j�|�d|���dS)N�	Holberton�b�	my_number)rZmiddle_namer_rrrYrrrr�&test_to_dict_contains_added_attributes�s 
+ z7TestCity_to_dict.test_to_dict_contains_added_attributescCsNt�}|��}|�tt|d��|�tt|d��|�tt|d��dS)Nrrr)rrYrrr)r 
+ r Zcy_dictrrr�)test_to_dict_datetime_attributes_are_strs�s 
+ z:TestCity_to_dict.test_to_dict_datetime_attributes_are_strscCsJt��}t�}d||||_dd|��|��d�}|�|��|�dS)Nr+r)rr[rr)	rr,rrrrr5�assertDictEqualrY)r 
+ r/r �tdictrrr�test_to_dict_output�s�z$TestCity_to_dict.test_to_dict_outputcCst�}|�|��|j�dSr)rr$rYrrrrr�!test_contrast_to_dict_dunder_dict�sz2TestCity_to_dict.test_contrast_to_dict_dunder_dictc	Cs*t�}|�t��|�d�W5QRXdSr)rr8r9rYrrrr�test_to_dict_with_arg�sz&TestCity_to_dict.test_to_dict_with_argN)r;r<r=r>rZr\r`rardrerfrrrrrV�s rV�_main_)r>rCr�unittestr�timer�models.cityr�TestCaserr?rVr;�mainrrrr�<module>sL32
